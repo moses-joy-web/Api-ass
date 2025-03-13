@@ -1,8 +1,8 @@
-const express = require('express');
+const app  = require('express')(); 
 require('dotenv').config();
-const port = 5000;
-
-const app = express();
+// const port = 5000;
+const port = process.env.port || 5000
+// const app = express();
 
 const countries = [
     {
@@ -40,48 +40,105 @@ const countries = [
         landmass: 7692024,
         landmark: "Sydney Opera House"
     },
-    {
-        name: "Brazil",
-        population: 212559417,
-        image: "https://example.com/brazil.jpg",
-        landmass: 8515767,
-        landmark: "Christ the Redeemer"
-    },
-    {
-        name: "India",
-        population: 1380004385,
-        image: "https://example.com/india.jpg",
-        landmass: 3287263,
-        landmark: "Taj Mahal"
-    },
-    {
-        name: "China",
-        population: 1439323776,
-        image: "https://example.com/china.jpg",
-        landmass: 9596961,
-        landmark: "Great Wall of China"
-    },
-    {
-        name: "Russia",
-        population: 145934462,
-        image: "https://example.com/russia.jpg",
-        landmass: 17098242,
-        landmark: "Red Square"
-    },
-    {
-        name: "South Africa",
-        population: 59308690,
-        image: "https://example.com/southafrica.jpg",
-        landmass: 1221037,
-        landmark: "Table Mountain"
-    }
 ];
 
-app.get('/', (req, res) => {
-    console.log('Hello World');
+const banks = [
+    {
+        name: "Bank of America",
+        headquarters: "USA",
+        image: "https://example.com/bankofamerica.jpg",
+        landmark: "Bank of America Tower"
+    },
+    {
+        name: "JPMorgan Chase",
+        headquarters: "USA",
+        image: "https://example.com/jpmorganchase.jpg",
+        landmark: "JPMorgan Chase Tower"
+    },
+    {
+        name: "Wells Fargo",
+        headquarters: "USA",
+        image: "https://example.com/wellsfargo.jpg",
+        landmark: "Wells Fargo Center"
+    },
+    {
+        name: "Citibank",
+        headquarters: "USA",
+        image: "https://example.com/citibank.jpg",
+        landmark: "Citigroup Center"
+    },
+    {
+        name: "Goldman Sachs",
+        headquarters: "USA",
+        image: "https://example.com/goldmansachs.jpg",
+        landmark: "Goldman Sachs Tower"
+    },
+    {
+        name: "Morgan Stanley",
+        headquarters: "USA",
+        image: "https://example.com/morganstanley.jpg",
+        landmark: "Morgan Stanley Building"
+    },
+];
+
+const foods = [
+    {
+        name: "Pizza",
+        image: "https://example.com/pizza.jpg",
+        origin_country: "Italy",
+        famous_city: "Naples"
+    },
+    {
+        name: "Sushi",
+        image: "https://example.com/sushi.jpg",
+        origin_country: "Japan",
+        famous_city: "Tokyo"
+    },
+    {
+        name: "Tacos",
+        image: "https://example.com/tacos.jpg",
+        origin_country: "Mexico",
+        famous_city: "Mexico City"
+    },
+    {
+        name: "Croissant",
+        image: "https://example.com/croissant.jpg",
+        origin_country: "France",
+        famous_city: "Paris"
+    },
+    {
+        name: "Burger",
+        image: "https://example.com/burger.jpg",
+        origin_country: "United States",
+        famous_city: "New York"
+    },
+    {
+        name: "Paella",
+        image: "https://example.com/paella.jpg",
+        origin_country: "Spain",
+        famous_city: "Valencia"
+    },
+];
+
+// Corrected Routes
+app.get('/api1', (req, res) => {
     res.json(countries);
 });
 
+app.get('/api2', (req, res) => {
+    res.json(banks);
+});
+
+app.get('/api3', (req, res) => {
+    res.json(foods);
+});
+
+// Home Route
+app.get('/', (req, res) => {
+    res.sendFile( __dirname +'/public/index.html')
+});
+
+// Start Server
 app.listen(port, () => {
-    console.log(`server started at port ${port}`);
+    console.log(`Server started at port ${port}`);
 });
